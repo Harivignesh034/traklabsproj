@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>tarklabs</title>
+</head>
+<style>
+    #i01{
+        margin: 80px;
+        margin-left: 300px;
+    }
+    #i03{
+        margin-left: 500px;
+        margin-top: 100px;
+    }
+    #i02{
+        margin-left: 40%;
+    }
+</style>
+<body>
+    <section>
+        <div id="i03" style="font-size: x-large;"><strong>EMPLOYEES DETAILS</strong></div><br><br>
+        <div>
+            <form id="id02" class="modal-content animate" action="" method="post">{% csrf_token %} 
+            <label id="i02" for="uname"><b style="font-family: Arial, Helvetica, sans-serif;">EMPLOYEE ID:</b></label><br>
+
+            <input id="i02" style="width: 300px;"  type="number" placeholder="Emp ID" name="emid" required><br>
+
+            <button id="i02" class="loginbtn" type="submit" style="width: 200px" style="font-family: Arial, Helvetica, sans-serif; ">Search</button>
+            </form>
+
+        </div>
+        <div>
+            <table id="i01">
+                {% if  obj2 %}
+                <br><br><h2 style="text-align: center;">No Records Found</h2>
+                {%endif %}
+                {% if obj1 %}
+                <tr >
+                    <th>EmpID</th>
+                    <th>EmpName</th>
+                    <th>Age</th>
+                    <th>Dept</th>
+                  </tr>
+                
+                <div class="row">
+                
+                    <tr>
+                        <td class="com-lg-2 col-md-2 col-md-4 col-6">{{obj1.EmpID}}</td>
+                        <td class="com-lg-2 col-md-4 col-md-4 col-12">{{obj1.EmpName}}</td>
+                        <td class="com-lg-2 col-md-2 col-md-3 col-12">{{obj1.Age}}</td>
+                        <td class="com-lg-2 col-md-2 col-md-3 col-12">{{obj1.Dept}}</td>
+                      </tr>
+                      </div>
+                {% endif %}
+            {% if obj %}
+            <tr >
+                <th>EmpID</th>
+                <th>EmpName</th>
+                <th>Age</th>
+                <th>Dept</th>
+              </tr>
+            {%for x in obj%} 
+            <div class="row">
+                
+                    <tr>
+                        <td class="com-lg-2 col-md-2 col-md-4 col-6">{{x.EmpID}}</td>
+                        <td class="com-lg-2 col-md-4 col-md-4 col-12">{{x.EmpName}}</td>
+                        <td class="com-lg-2 col-md-2 col-md-3 col-12">{{x.Age}}</td>
+                        <td class="com-lg-2 col-md-2 col-md-3 col-12">{{x.Dept}}</td>
+                      </tr>
+                      </div>
+            
+            {% endfor %}
+            {% endif %}
+        </table>
+        </div>
+    </section>
+</body>
+</html>
